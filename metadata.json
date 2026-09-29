@@ -1,0 +1,6 @@
+{
+  "name": "Estimulação Visual Brasil - Darlene Kloster",
+  "description": "Especialista em Estimulação Visual Modulada, Neurovisão, Reeducação Visuopostural (RVP) e Baixa Visão/DVC para bebês, crianças, neurodivergentes e adultos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

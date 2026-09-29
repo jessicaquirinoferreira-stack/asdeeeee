@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Site Content (Main dynamic texts)
+    match /siteContent/{docId} {
+      allow read, write: if true;
+    }
+
+    // Testimonials
+    match /testimonials/{testimonialId} {
+      allow read, write: if true;
+    }
+
+    // Educational Articles
+    match /articles/{articleId} {
+      allow read, write: if true;
+    }
+
+    // Pre-scheduled Appointments (inquiries)
+    match /appointments/{appointmentId} {
+      allow create: if request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 120 &&
+        request.resource.data.phone is string && request.resource.data.phone.size() > 0 && request.resource.data.phone.size() <= 40 &&
+        request.resource.data.caseDescription is string && request.resource.data.caseDescription.size() <= 2000;
+      allow get, list, update, delete: if true;
+    }
+  }
+}

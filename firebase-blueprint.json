@@ -1,0 +1,89 @@
+{
+  "entities": {
+    "SiteContent": {
+      "title": "SiteContent",
+      "description": "Customizable website texts, contact information and settings",
+      "type": "object",
+      "properties": {
+        "heroBadge": { "type": "string", "maxLength": 120 },
+        "heroTitle": { "type": "string", "maxLength": 200 },
+        "heroSubtitle": { "type": "string", "maxLength": 600 },
+        "aboutText1": { "type": "string", "maxLength": 1200 },
+        "aboutText2": { "type": "string", "maxLength": 1200 },
+        "aboutSpecialist": { "type": "string", "maxLength": 1500 },
+        "specialistQuote": { "type": "string", "maxLength": 300 },
+        "whatsappNumber": { "type": "string", "maxLength": 30 },
+        "phoneNumber": { "type": "string", "maxLength": 30 },
+        "email": { "type": "string", "maxLength": 100 },
+        "instagram": { "type": "string", "maxLength": 100 },
+        "address": { "type": "string", "maxLength": 200 },
+        "city": { "type": "string", "maxLength": 100 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["heroTitle", "heroSubtitle", "whatsappNumber"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Patient and family testimonials and success stories",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "maxLength": 100 },
+        "text": { "type": "string", "maxLength": 3000 },
+        "videoUrl": { "type": "string", "maxLength": 500 },
+        "rating": { "type": "number" },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["name", "role", "text"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Pre-scheduled appointment inquiry from website visitor",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 120 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "email": { "type": "string", "maxLength": 120 },
+        "patientAge": { "type": "string", "maxLength": 30 },
+        "caseDescription": { "type": "string", "maxLength": 2000 },
+        "status": { "type": "string", "enum": ["new", "contacted", "scheduled", "archived"] },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["name", "phone", "caseDescription"]
+    },
+    "Article": {
+      "title": "Article",
+      "description": "Educational articles about visual stimulation and neurovision",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "category": { "type": "string", "maxLength": 80 },
+        "summary": { "type": "string", "maxLength": 400 },
+        "content": { "type": "string", "maxLength": 8000 },
+        "readTime": { "type": "string", "maxLength": 30 },
+        "imageUrl": { "type": "string", "maxLength": 500 },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "category", "summary", "content"]
+    }
+  },
+  "firestore": {
+    "/siteContent/{docId}": {
+      "schema": "SiteContent",
+      "description": "Main global site configuration and dynamic text content"
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": "Testimonial",
+      "description": "Collection of success stories and feedback"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "Pre-booking inquiries from visitors"
+    },
+    "/articles/{articleId}": {
+      "schema": "Article",
+      "description": "Educational blog posts and neurovision guides"
+    }
+  }
+}
